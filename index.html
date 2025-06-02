@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShoreSquad - Beach Cleanup Community</title>
-    <meta name="description" content="Rally your crew, track weather, and join beach cleanups with our interactive map app!">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Rally your crew, track weather, and join beach cleanups with our interactive map app!">    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/weather-loading.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet Locate Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 </head>
 <body>
     <header class="header">
@@ -27,19 +33,33 @@
             <h1>Make Waves of Change</h1>
             <p>Join the movement to keep our beaches clean</p>
             <button class="cta-button">Join a Cleanup</button>
-        </section>
-
-        <section id="map" class="map-section">
-            <h2>Find Nearby Cleanups</h2>
-            <div class="map-container">
-                <!-- Map will be inserted here via JavaScript -->
+        </section>        <section id="map" class="map-section">
+            <h2>Find Nearby Cleanups</h2>            <div class="map-container">
+                <div id="cleanup-map"></div>
+            </div>            <div class="map-info" id="next-cleanup-info">
+                <!-- Dynamic content will be updated by JavaScript -->
             </div>
-        </section>
-
-        <section id="weather" class="weather-section">
-            <h2>Beach Weather</h2>
-            <div class="weather-container">
-                <!-- Weather info will be dynamically loaded -->
+        </section>        <section id="weather" class="weather-section">
+            <h2>Beach Weather Forecast</h2>
+            <div class="weather-container">                <div class="weather-current">
+                    <h3>Current Conditions</h3>
+                    <div class="weather-info">
+                        <div id="current-temp"></div>
+                        <div id="current-humidity"></div>
+                        <div id="current-wind"></div>
+                        <div id="current-uv"></div>
+                        <div id="current-rain"></div>
+                    </div>
+                    <div class="weather-update">
+                        <small>Last updated: <span id="last-update"></span></small>
+                    </div>
+                </div>
+                <div class="weather-forecast">
+                    <h3>4-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecast-container">
+                        <!-- Forecast cards will be dynamically inserted here -->
+                    </div>
+                </div>
             </div>
         </section>
 

@@ -1,0 +1,33 @@
+.weather-container.loading {
+    position: relative;
+    min-height: 200px;
+}
+
+.weather-container.loading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
+.weather-container.loading::after {
+    content: "Loading weather data...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--ocean-blue);
+    font-weight: bold;
+    z-index: 2;
+}
+
+.weather-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
